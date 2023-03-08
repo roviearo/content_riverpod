@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'login_controller.dart';
 
 class LoginState extends Equatable {
   const LoginState();

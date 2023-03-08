@@ -1,9 +1,21 @@
+import 'package:content_riverpod/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Stream<User?> get authStateChange => _auth.idTokenChanges();
+  // Stream<User?> get authStateChange => _auth.idTokenChanges();
+  Stream<UserModel> get user {
+    return _auth.authStateChanges().map((firebaseUser) {
+      return firebaseUser == null
+          ? UserModel.empty
+          : UserModel(
+              uid: firebaseUser.uid,
+              email: firebaseUser.email,
+              displayName: firebaseUser.displayName,
+            );
+    });
+  }
 
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {

@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
   final String uid;
-  final String email;
-  final String displayName;
-  String? photoUrl;
+  final String? email;
+  final String? displayName;
+  final String? photoUrl;
 
-  UserModel({
+  const UserModel({
     required this.uid,
-    required this.email,
-    required this.displayName,
+    this.email,
+    this.displayName,
     this.photoUrl,
   });
 
@@ -21,6 +21,10 @@ class UserModel {
       'photoUrl': photoUrl,
     };
   }
+
+  static const empty = UserModel(uid: '');
+
+  bool get isEmpty => this == UserModel.empty;
 
   UserModel.fromDocumentSnapshot(
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot)
