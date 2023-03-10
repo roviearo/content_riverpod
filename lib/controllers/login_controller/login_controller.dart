@@ -1,6 +1,6 @@
 import 'package:content_riverpod/providers/auth_provider.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'login_state.dart';
 
